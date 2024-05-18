@@ -34,12 +34,16 @@ def route_order_by_id(order_id):
     random_delay()
     if request.method == 'GET':
         order = find_order(order_id)
+        if order is None:
+            return jsonify(error_response(404, 'Order not found')), 404
         response = to_dict(order)
         response['status'] = order.status
         return jsonify(response), 200
 
     if request.method == 'DELETE':
         order = find_order(order_id)
+        if order is None:
+            return jsonify(error_response(404, 'Order not found')), 404
         orders.remove(order)
         return 'Order canceled', 204
 
@@ -56,8 +60,6 @@ def to_dict(order):
 
 def find_order(order_id):
     searched_order = next((order for order in orders if str(order.orderID) == order_id), None)
-    if searched_order is None:
-        return jsonify(error_response(404, 'Order not found')), 404
     return searched_order
 
 
