@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from werkzeug.exceptions import BadRequest
 from random import randint
 from time import sleep
-from order import Order
+from .order import Order
 
 
 app = Flask(__name__)
