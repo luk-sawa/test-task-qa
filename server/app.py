@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import BadRequest, UnsupportedMediaType
 from random import randint
 from time import sleep
 from .order import Order
@@ -21,6 +21,8 @@ def route_orders():
         try:
             new_order = request.get_json()
         except BadRequest:
+            return jsonify(error_response(400, 'Invalid input')), 400
+        except UnsupportedMediaType:
             return jsonify(error_response(400, 'Invalid input')), 400
         new_order = to_order(new_order)
         orders.append(new_order)

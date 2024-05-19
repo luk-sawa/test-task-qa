@@ -5,10 +5,10 @@ RUN pip install --no-cache-dir pipenv
 
 WORKDIR /usr/src/app
 COPY ../requirements.txt ./
-COPY ../deploy.sh ./
-COPY ./server ./server
+COPY ../run_tests.sh ./
+COPY ./tests ./tests
 
 RUN pip install -r requirements.txt
 
 EXPOSE 8080
-ENTRYPOINT ["/usr/src/app/deploy.sh"]
+ENTRYPOINT ["/usr/src/app/run_tests.sh"]

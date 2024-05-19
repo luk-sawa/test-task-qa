@@ -34,3 +34,7 @@ def single_order():
 def incorrect_single_order():
     order = "{ 'stoks': 'some_stock', 'quantity': 123"
     return order
+
+def url_address():
+    url = 'http://server:8080'
+    return url

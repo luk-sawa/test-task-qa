@@ -1,5 +1,6 @@
 import requests
+from .data import url_address
 
 
 def cleanup_order(order_id):
-    requests.delete(f'http://127.0.0.1:5000/orders/{order_id}')
+    requests.delete(f'{url_address()}/orders/{order_id}')
